@@ -38,6 +38,7 @@ BASE_URL = os.getenv("BASE_URL")
 
 ETHER_VALUE = 10 ** 18
 
+ADDRESS = input("Your wallet address: ")
 
 def make_api_url(module, action ,address, *args, **kwargs):
     request_url = f'{BASE_URL}/api?module={module}&action={action}&address={address}&apikey={API_KEY}'
@@ -47,7 +48,7 @@ def make_api_url(module, action ,address, *args, **kwargs):
 
     return request_url
 
-get_url = make_api_url('account', 'balance', '0x6fe5ACa9AAA9EC752fbe95FB39673A5156f3D9cb', tag = 'latest')
+get_url = make_api_url('account', 'balance', ADDRESS, tag = 'latest')
 
 # print(get_url)
 
@@ -69,7 +70,7 @@ def get_transaction_type():
     tx_url =  make_api_url(
                             'account', 
                             'txlist', 
-                            '0x6fe5ACa9AAA9EC752fbe95FB39673A5156f3D9cb', 
+                            ADDRESS, 
                             startblock=0, 
                             endblock=99999999, 
                             page=1 ,
